@@ -21,28 +21,14 @@
       --link: #7a4030;
     }
 
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #1a1210;
-        --surface: #241a17;
-        --border: #3a2820;
-        --text: #ede0d8;
-        --muted: #9a8a80;
-        --accent: #ede0d8;
-        --tag-bg: #2e1e18;
-        --tag-text: #c0a898;
-        --link: #d4906a;
-      }
-    }
-
     html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Source Sans 3', sans-serif;
       background: var(--bg);
       color: var(--text);
-      font-size: 17px;
-      line-height: 1.75;
+      font-size: 19px;
+      line-height: 1.8;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -118,7 +104,7 @@
     }
 
     .hero-bio {
-      font-size: 17px;
+      font-size: 19px;
       color: var(--muted);
       max-width: 560px;
       margin-bottom: 32px;
@@ -201,7 +187,7 @@
     }
 
     .skill-list li {
-      font-size: 13px;
+      font-size: 16px;
       color: var(--text);
     }
 
@@ -229,14 +215,14 @@
 
     .project-name {
       font-weight: 500;
-      font-size: 14px;
+      font-size: 17px;
       margin-bottom: 4px;
     }
 
     .project-desc {
-      font-size: 13px;
+      font-size: 16px;
       color: var(--muted);
-      line-height: 1.55;
+      line-height: 1.65;
     }
 
     .project-tags {
@@ -250,14 +236,14 @@
       background: var(--tag-bg);
       color: var(--tag-text);
       font-family: 'DM Mono', monospace;
-      font-size: 11px;
+      font-size: 12px;
       padding: 2px 8px;
       border-radius: 3px;
     }
 
     .project-link {
       font-family: 'DM Mono', monospace;
-      font-size: 11px;
+      font-size: 12px;
       color: var(--muted);
       text-decoration: none;
       white-space: nowrap;
@@ -285,7 +271,7 @@
 
     .exp-date {
       font-family: 'DM Mono', monospace;
-      font-size: 11px;
+      font-size: 12px;
       color: var(--muted);
       line-height: 1.6;
     }
@@ -293,12 +279,12 @@
     .exp-company {
       font-family: 'Lora', serif;
       font-weight: 500;
-      font-size: 15px;
+      font-size: 18px;
       margin-bottom: 2px;
     }
 
     .exp-role {
-      font-size: 13px;
+      font-size: 16px;
       color: var(--muted);
       margin-bottom: 10px;
     }
@@ -307,13 +293,13 @@
       padding-left: 16px;
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 8px;
     }
 
     .exp-points li {
-      font-size: 13px;
+      font-size: 16px;
       color: var(--muted);
-      line-height: 1.55;
+      line-height: 1.65;
     }
 
     /* Contact */
@@ -339,14 +325,14 @@
 
     .contact-platform {
       font-family: 'DM Mono', monospace;
-      font-size: 11px;
+      font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       color: var(--muted);
     }
 
     .contact-handle {
-      font-size: 14px;
+      font-size: 17px;
       color: var(--text);
     }
 
@@ -370,7 +356,7 @@
     @media (max-width: 768px) {
       main { padding: 100px 1.5rem 60px; }
       .exp-item { grid-template-columns: 1fr; gap: 4px; }
-      .hero-bio { font-size: 15px; }
+      .hero-bio { font-size: 17px; }
     }
 
     @media (max-width: 480px) {
