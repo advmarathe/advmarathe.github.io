@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name — AppSec / Product Security</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f9f8f6;
+      --surface: #ffffff;
+      --border: #e4e2dc;
+      --text: #1a1917;
+      --muted: #6b6860;
+      --accent: #1a1917;
+      --tag-bg: #f0ede6;
+      --tag-text: #4a4843;
+      --link: #2b5eea;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111110;
+        --surface: #1c1b1a;
+        --border: #2e2d2b;
+        --text: #e8e6e1;
+        --muted: #8a8880;
+        --accent: #e8e6e1;
+        --tag-bg: #252422;
+        --tag-text: #b0ada6;
+        --link: #6b93f5;
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .mono { font-family: 'DM Mono', monospace; }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-name {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: var(--text);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 120px 2rem 80px;
+    }
+
+    section { margin-bottom: 80px; }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    /* Hero */
+    .hero-title {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 300;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .hero-title em {
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    .hero-bio {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 32px;
+      line-height: 1.75;
+    }
+
+    .hero-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-family: 'DM Mono', monospace;
+      text-decoration: none;
+      transition: all 0.15s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--text);
+      color: var(--bg);
+      border: 1px solid var(--text);
+    }
+
+    .btn-primary:hover { opacity: 0.8; }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover { border-color: var(--muted); }
+
+    /* Divider */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin-bottom: 80px;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--border);
+    }
+
+    .skill-group {
+      background: var(--surface);
+      padding: 20px;
+    }
+
+    .skill-group-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .skill-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .skill-list li {
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    /* Projects */
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .project-item {
+      background: var(--surface);
+      padding: 20px 24px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: start;
+      transition: background 0.1s;
+    }
+
+    .project-item:hover { background: var(--tag-bg); }
+
+    .project-name {
+      font-weight: 500;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .project-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 3px;
+    }
+
+    .project-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      text-decoration: none;
+      white-space: nowrap;
+      padding-top: 2px;
+    }
+
+    .project-link:hover { color: var(--link); }
+
+    /* Experience */
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .exp-item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 24px;
+    }
+
+    .exp-meta {
+      padding-top: 2px;
+    }
+
+    .exp-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .exp-company {
+      font-weight: 500;
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+
+    .exp-role {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .exp-points {
+      padding-left: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .exp-points li {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .contact-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px 20px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      transition: border-color 0.15s;
+    }
+
+    .contact-item:hover { border-color: var(--muted); }
+
+    .contact-platform {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+
+    .contact-handle {
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    footer {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 2rem 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+    }
+
+    footer p {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 560px) {
+      .exp-item { grid-template-columns: 1fr; gap: 4px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-name">Advait Marathe</span>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#experience">experience</a></li>
+    <li><a href="#contact">contact</a></li>
+    <li><a href="#skills">skills</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- HERO / ABOUT -->
+  <section id="about">
+    <p class="section-label">01 — about</p>
+    <h1 class="hero-title">
+      Hi, I'm <em>Advait Marathe</em>,<br />a full-stack security engineer.
+    </h1>
+    <p class="hero-bio">
+      A decade across AppSec, cloud security, DevSecOps, vulnerability management, and incident response at startups and public companies.
+      I design and deliver security solutions and work directly with the teams building the product.
+    </p>
+    <div class="hero-links">
+      <a class="btn btn-primary" href="https://linkedin.com/in/advmarat">get in touch</a>
+      <a class="btn btn-outline" href="https://github.com/advmarathe" target="_blank">github ↗</a>
+    </div>
+  </section>
+
+
+
+  <!-- PROJECTS / HIGHLIGHTS -->
+  <section id="projects">
+    <p class="section-label">02 — highlights</p>
+    <div class="project-list">
+
+      <div class="project-item">
+        <div>
+          <p class="project-name">CTF program</p>
+          <p class="project-desc">
+            Ran org-wide CTF competitions to build AppSec awareness across the engineering team and making security more proactive.
+          </p>
+          <div class="project-tags">
+            <span class="tag">appsec</span>
+            <span class="tag">culture</span>
+            <span class="tag">engineering enablement</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div>
+          <p class="project-name">Vuln management automation</p>
+          <p class="project-desc">
+            Built a Python pipeline for vuln tracking and SLA enforcement that eliminated all manual
+            ticket overhead and achieved 100% coverage across every service.
+          </p>
+          <div class="project-tags">
+            <span class="tag">python</span>
+            <span class="tag">vuln management</span>
+            <span class="tag">automation</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div>
+          <p class="project-name">CI/CD security integration</p>
+          <p class="project-desc">
+            Integrated SAST, secrets scanning, and container scanning into all CI/CD pipelines org-wide.
+            Zero secrets in pipelines post-rollout.
+          </p>
+          <div class="project-tags">
+            <span class="tag">devsecops</span>
+            <span class="tag">sast</span>
+            <span class="tag">ci/cd</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <div>
+          <p class="project-name">Vuln reporting platform</p>
+          <p class="project-desc">
+            Built automated vulnerability reporting tooling for 12,600 employees using Python (Django)
+            and the Qualys API during a software engineering internship on the security operations team.
+          </p>
+          <div class="project-tags">
+            <span class="tag">python</span>
+            <span class="tag">django</span>
+            <span class="tag">qualys</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="section-label">03 — experience</p>
+    <div class="exp-list">
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <p class="exp-date">Jan 2025 — present</p>
+        </div>
+        <div>
+          <p class="exp-company">ASAPP</p>
+          <p class="exp-role">Lead Security Engineer</p>
+          <ul class="exp-points">
+            <li>Led supply chain attack remediation and response across all teams and services.</li>
+            <li>Defined LLM acceptable use policies and led security remediation for AI tooling including Claude Code.</li>
+            <li>Led architecture reviews on several complex systems across the organization.</li>
+            <li>Ran org-wide CTF competition to build AppSec awareness across the engineering team.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <p class="exp-date">Aug 2023 — Dec 2024</p>
+        </div>
+        <div>
+          <p class="exp-company">Eltropy</p>
+          <p class="exp-role">Sr. Security Engineer</p>
+          <ul class="exp-points">
+            <li>Resolved a product security issue blocking an enterprise renewal; saved ~$200k ARR.</li>
+            <li>Joined the Enterprise Architecture group as security SME for product platform decisions.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <p class="exp-date">May 2022 — Aug 2023</p>
+        </div>
+        <div>
+          <p class="exp-company">SentiLink</p>
+          <p class="exp-role">Security Engineer</p>
+          <ul class="exp-points">
+            <li>First security hire — owned AppSec, vuln management, and secure development practices from day one.</li>
+            <li>Automated vuln tracking and SLA enforcement in Python; eliminated manual overhead and reached 100% coverage across all services.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <p class="exp-date">Nov 2018 — May 2022</p>
+        </div>
+        <div>
+          <p class="exp-company">Q2</p>
+          <p class="exp-role">Security Engineer / DevSecOps</p>
+          <ul class="exp-points">
+            <li>Ran WebApp pentests across 5 products; found OWASP Top 10 issues including XSS and CSRF across multiple codebases.</li>
+            <li>Integrated SAST, secrets scanning, and container scanning into all CI/CD pipelines org-wide — zero secrets in pipelines post-rollout.</li>
+            <li>Automated repetitive security tasks with Python and F5 APIs; saved $27k/year.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <p class="exp-date">May 2017 — Aug 2017</p>
+        </div>
+        <div>
+          <p class="exp-company">eBay</p>
+          <p class="exp-role">Software Engineer Intern — Security Operations</p>
+          <ul class="exp-points">
+            <li>Built automated vuln reporting for 12,600 employees using Python (Django) and Qualys.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">04 — contact</p>
+    <div class="contact-grid">
+      <a class="contact-item" href="https://github.com/advmarathe" target="_blank">
+        <span class="contact-platform">GitHub</span>
+        <span class="contact-handle">@advmarathe</span>
+      </a>
+      <a class="contact-item" href="https://linkedin.com/in/advmarat" target="_blank">
+        <span class="contact-platform">LinkedIn</span>
+        <span class="contact-handle">advmarat</span>
+      </a>
+    </div>
+  </section>
+
+
+  <!-- CERTS & TOOLS -->
+  <section id="skills">
+    <p class="section-label">06 — certifications & tools</p>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <p class="skill-group-title">Certifications</p>
+        <ul class="skill-list">
+          <li>SANS GIAC GCSA</li>
+          <li>SANS GIAC GSEC</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">Tools & Platforms</p>
+        <ul class="skill-list">
+          <li>AWS</li>
+          <li>Python</li>
+          <li>Kubernetes</li>
+          <li>Docker</li>
+          <li>Burp Suite</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">Compliance</p>
+        <ul class="skill-list">
+          <li>PCI DSS</li>
+          <li>SOC 2</li>
+          <li>HIPAA</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</m
