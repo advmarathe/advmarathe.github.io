@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advait Marathe — Resume</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --text: #1a1917;
+      --muted: #5a5754;
+      --border: #d8d5cf;
+      --accent: #1a1917;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      font-size: 11px;
+      line-height: 1.55;
+      background: #fff;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 14mm 16mm 14mm 16mm;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-bottom: 10px;
+      border-bottom: 1.5px solid var(--text);
+      margin-bottom: 14px;
+    }
+
+    .header-name {
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .header-title {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 4px;
+      font-family: 'DM Mono', monospace;
+    }
+
+    .header-links {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 3px;
+    }
+
+    .header-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    /* Two-column layout */
+    .body {
+      display: grid;
+      grid-template-columns: 148px 1fr;
+      gap: 0 20px;
+    }
+
+    /* Left column */
+    .left { padding-top: 2px; }
+
+    .sidebar-section { margin-bottom: 16px; }
+
+    .sidebar-heading {
+      font-family: 'DM Mono', monospace;
+      font-size: 8.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text);
+      font-weight: 500;
+      margin-bottom: 6px;
+      padding-bottom: 3px;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .sidebar-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .sidebar-list li {
+      font-size: 10.5px;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .sidebar-list li.muted {
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    /* Right column */
+    .right { border-left: 0.5px solid var(--border); padding-left: 20px; }
+
+    .section { margin-bottom: 16px; }
+
+    .section-heading {
+      font-family: 'DM Mono', monospace;
+      font-size: 8.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text);
+      font-weight: 500;
+      margin-bottom: 10px;
+      padding-bottom: 3px;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    /* Summary */
+    .summary {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* Experience */
+    .exp-item { margin-bottom: 12px; }
+    .exp-item:last-child { margin-bottom: 0; }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1px;
+    }
+
+    .exp-company {
+      font-weight: 500;
+      font-size: 11.5px;
+      color: var(--text);
+    }
+
+    .exp-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .exp-role {
+      font-size: 10.5px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .exp-points {
+      padding-left: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .exp-points li {
+      font-size: 10.5px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    @media print {
+      @page {
+        size: A4;
+        margin: 0;
+      }
+      body { background: #fff; }
+      .page { margin: 0; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div>
+      <div class="header-name">Advait Marathe</div>
+      <div class="header-title">Security Engineer — AppSec / Product Security</div>
+    </div>
+    <div class="header-links">
+      <a href="https://github.com/advmarathe">github.com/advmarathe</a>
+      <a href="https://linkedin.com/in/advmarat">linkedin.com/in/advmarat</a>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <!-- LEFT SIDEBAR -->
+    <div class="left">
+
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Core Skills</div>
+        <ul class="sidebar-list">
+          <li>WebApp Pentesting</li>
+          <li>OWASP Top 10</li>
+          <li>Architecture Reviews</li>
+          <li>Threat Modeling</li>
+          <li>SAST / DAST / SCA</li>
+          <li>CI/CD Security</li>
+          <li>Vuln Management</li>
+          <li>Incident Response</li>
+          <li>LLM Security</li>
+          <li>Cloud Security (AWS)</li>
+          <li>Kubernetes / Docker</li>
+          <li>Python</li>
+          <li>Burp Suite</li>
+          <li>Qualys</li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Certifications</div>
+        <ul class="sidebar-list">
+          <li>SANS GIAC GCSA</li>
+          <li>SANS GIAC GSEC</li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Compliance</div>
+        <ul class="sidebar-list">
+          <li>PCI DSS</li>
+          <li>SOC 2</li>
+          <li>HIPAA</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- RIGHT MAIN CONTENT -->
+    <div class="right">
+
+      <div class="section">
+        <div class="section-heading">Summary</div>
+        <p class="summary">A decade across AppSec, cloud security, DevSecOps, vulnerability management, and incident response at startups and public companies. I design and deliver security solutions and work directly with the teams building the product.</p>
+      </div>
+
+      <div class="section">
+        <div class="section-heading">Experience</div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-company">ASAPP</span>
+            <span class="exp-date">Jan 2025 — Present</span>
+          </div>
+          <div class="exp-role">Lead Security Engineer</div>
+          <ul class="exp-points">
+            <li>Led supply chain attack remediation and response across all teams and services.</li>
+            <li>Defined LLM acceptable use policies and led security remediation for AI tooling including Claude Code.</li>
+            <li>Led architecture reviews on several complex systems across the organization.</li>
+            <li>Ran org-wide CTF competition to build AppSec awareness across the engineering team.</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-company">Eltropy</span>
+            <span class="exp-date">Aug 2023 — Dec 2024</span>
+          </div>
+          <div class="exp-role">Sr. Security Engineer</div>
+          <ul class="exp-points">
+            <li>Resolved a product security issue blocking an enterprise renewal; saved ~$200k ARR.</li>
+            <li>Joined the Enterprise Architecture group as security SME for product platform decisions.</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-company">SentiLink</span>
+            <span class="exp-date">May 2022 — Aug 2023</span>
+          </div>
+          <div class="exp-role">Security Engineer</div>
+          <ul class="exp-points">
+            <li>First security hire — owned AppSec, vuln management, and secure development practices from day one.</li>
+            <li>Automated vuln tracking and SLA enforcement in Python; eliminated manual overhead and reached 100% coverage across all services.</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-company">Q2</span>
+            <span class="exp-date">Nov 2018 — May 2022</span>
+          </div>
+          <div class="exp-role">Security Engineer / DevSecOps</div>
+          <ul class="exp-points">
+            <li>Ran WebApp pentests across 5 products; found OWASP Top 10 issues including XSS and CSRF across multiple codebases.</li>
+            <li>Integrated SAST, secrets scanning, and container scanning into all CI/CD pipelines org-wide — zero secrets post-rollout.</li>
+            <li>Automated repetitive security tasks with Python and F5 APIs; saved $27k/year.</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-company">eBay</span>
+            <span class="exp-date">May 2017 — Aug 2017</span>
+          </div>
+          <div class="exp-role">Software Engineer Intern — Security Operations</div>
+          <ul class="exp-points">
+            <li>Built automated vuln reporting for 12,600 employees using Python (Django) and Qualys.</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>
